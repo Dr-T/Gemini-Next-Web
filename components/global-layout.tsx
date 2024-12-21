@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { AudioOutlined, LeftOutlined, GithubOutlined } from '@ant-design/icons';
+import { AudioOutlined, LeftOutlined, GithubOutlined, OpenAIOutlined, ApiOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Layout, Menu, theme, ConfigProvider, Flex } from 'antd';
 import clsx from 'clsx';
@@ -29,7 +29,11 @@ const items: MenuItem[] = [
 	getItem('Stream Realtime', '/live', <AudioOutlined />),
 ];
 
-const subItems: MenuItem[] = [getItem('Github', '/github', <GithubOutlined />)];
+const subItems: MenuItem[] = [
+    getItem('LobeChat', '/lobechat', <OpenAIOutlined />), // 添加第一个新的子菜单项
+    getItem('NewAPI', '/new-api', <ApiOutlined />), // 添加第二个新的子菜单项
+    getItem('Github', '/github', <GithubOutlined />)
+];
 
 const GlobalLayout: React.FC<{
 	children: React.ReactNode;
@@ -57,11 +61,23 @@ const GlobalLayout: React.FC<{
 	const handleSubMenuClick: MenuProps['onClick'] = (e) => {
 		if (e.key === '/github') {
 			window.open(
-				'https://github.com/ElricLiu/Gemini-Next-Web',
+				'https://github.com/Dr-T/Gemini-Next-Web',
 				'_blank'
 			);
-		}
-	};
+		} else if (e.key === '/new-api') {
+			// 添加新的子菜单1点击处理逻辑
+			window.open(
+				'https://newapi.tx88.eu.org',
+				'_blank'
+			);
+		} else if (e.key === '/lobechat') {
+			// 添加新的子菜单2点击处理逻辑
+			window.open(
+				'http://lobechat.tx88.eu.org',
+				'_blank'
+			);
+        	}
+        };
 
 	return (
 		<ConfigProvider
